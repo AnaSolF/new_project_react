@@ -6,11 +6,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import styles from "../styles/header.module.css"
 
 const Header = () => {
     return (
             <>
-                {[false].map((expand) => (
+                {['lg'].map((expand) => (
                     <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
                         <Container fluid>
                             <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
