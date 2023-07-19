@@ -1,8 +1,12 @@
 import React from 'react'
-
+import styles from "../styles/main.module.css";
 const Main = () => {
   return (
-    <div><h1>Hola mundo!</h1></div>
+    <><div className={styles.main}>
+    
+    
+    
+    </div></>
   )
 }
 
