@@ -22,15 +22,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header />
-      <div className={styles.main}>
-        <h1 className={styles.titulo}>Pedí Ya</h1>
-        <div className={styles.banner}>Banner</div>
-        <main className={styles.principal}>
-            <h1>Usuario</h1>
-        <Main />   
-        </main>
-        <div className={styles.productos}></div>
-      </div>
+        <Main />
         <Footer />
       </main>
     </>

@@ -11,7 +11,7 @@ export const useMainContextProvider = () => useContext(MainContext);//HOOK PERSO
 export const useUserToggleContext = () => useContext(UserToggleContext); //Otro HOOK personalizado par pasar función
 export const MainContextProvider = ({ children }) => {
   // Dento del atributo value es donde vamos a pasar lo que querramos importando hook useContex en el componente hijo
-  
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [user, setUser] = useState(null);
   const cambiarLogin = () => {
     if (user) {
@@ -20,6 +20,7 @@ export const MainContextProvider = ({ children }) => {
       setUser({ name: "Pablo", age: 23 });
     }
   };
+
   
 //Envolvemos con el primer contexto y con el segundo y pasamos los values para c/u
   return (
