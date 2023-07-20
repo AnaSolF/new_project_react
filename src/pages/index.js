@@ -6,12 +6,12 @@ import Header from "@/Components/Header";
 import Main from "@/Components/Main";
 import Footer from "@/Components/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useMainContextProvider } from "@/Context/MainContextProvider";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-     let user = useMainContextProvider(); //Paso la variable que quiero usar utilizando el hook personalizado
+    
   return (
     <>
       <Head>
@@ -27,8 +27,7 @@ export default function Home() {
         <div className={styles.banner}>Banner</div>
         <main className={styles.principal}>
             <h1>Usuario</h1>
-            {/* Renderizo la variable mediante un condicional */}
-            {user && <p>Hola: {user.name}, {user.age}</p>} 
+        <Main />   
         </main>
         <div className={styles.productos}></div>
       </div>
