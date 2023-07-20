@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useContext, setContext } from "react";
-import { Button } from "react-bootstrap";
 //Creamos el contexto y lo exportamos
 export const MainContext = React.createContext();
 // export const CartContext = React.createContext();
-//console.log(CartContext)
+
+export const UserToggleContext = React.createContext();
+
 
 export const useMainContextProvider = () => useContext(MainContext);//HOOK PERSONALIZADO: Función que retorna el mainContext. Podemos hacer lo mismo con otros contextos.
+export const useUserToggleContext = () => useContext(UserToggleContext); //Otro HOOK personalizado par pasar función
 export const MainContextProvider = ({ children }) => {
   // Dento del atributo value es donde vamos a pasar lo que querramos importando hook useContex en el componente hijo
   
@@ -18,23 +20,13 @@ export const MainContextProvider = ({ children }) => {
       setUser({ name: "Pablo", age: 23 });
     }
   };
-  function cambiarNombre(newName) {
-    setName(newName);
-  }
-
+  
+//Envolvemos con el primer contexto y con el segundo y pasamos los values para c/u
   return (
     <MainContext.Provider value={user}>
+      <UserToggleContext.Provider value={cambiarLogin}>  
       {children}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-      <Button 
-        onClick={(e) => {
-          cambiarLogin();
-        }}
-      >
-        Cambiar nombre
-      </Button>
-      </div>
-    
+      </UserToggleContext.Provider>
     </MainContext.Provider>
   );
 };
