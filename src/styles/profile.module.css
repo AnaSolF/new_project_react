@@ -1,0 +1,10 @@
+.Sidebar{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.user{
+    margin-bottom: 30px;
+}
