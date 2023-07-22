@@ -9,7 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import styles from "../styles/header.module.css"
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useContext } from 'react';
-import { MainContext } from '@/Context/MainContextProvider'
+
 
 const Header = () => {
     // const defaultState = useContext(MainContext);
@@ -34,7 +34,7 @@ const Header = () => {
                                     <Nav className="justify-content-end flex-grow-1 pe-3">
                                         <Nav.Link href="/CustomLogin">Ingresar</Nav.Link>
                                         <Nav.Link href="/Register">Registrarme</Nav.Link>
-                                        <Nav.Link href="#action3"><BsFillCartPlusFill /></Nav.Link>  
+                                        <Nav.Link href="Cart"><BsFillCartPlusFill /></Nav.Link>  
                                     </Nav> 
                                 </Offcanvas.Body>
                             </Navbar.Offcanvas>

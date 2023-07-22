@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/main.module.css";
-import { useMainContextProvider, useUserToggleContext } from "@/Context/MainContextProvider";
+import { useMainContextProvider } from "@/Context/MainContextProvider";
+import { useUserContextProvider } from "@/Context/UserContextProvider";
 import { Button } from "react-bootstrap";
+import { CartContext } from "@/Context/CartContext";
 
 //Para usar contexto
 //Import useContext
@@ -9,8 +11,11 @@ import { Button } from "react-bootstrap";
 //declarar la const donde traemos el dato usando useContext()
 //Usamos un condicional para mostrar o no el usuario
 const Main = (props) => {
-  let user = useMainContextProvider();
-  let cambiarLogin = useUserToggleContext();
+  let { defaultState } = useMainContextProvider();
+  let { usuario }= useUserContextProvider();
+  let{ saludo } = useUserContextProvider();
+ 
+  console.log(defaultState)
   return (
     <>
       <div className={styles.main}>
@@ -18,11 +23,11 @@ const Main = (props) => {
         <div className={styles.banner}>Banner</div>
         <main className={styles.principal}>
           <h1>Usuario</h1>
-          {user && <p>{user.name}</p>}
+          {usuario && <p>{usuario.username}</p>}
           <div style={{ display: "flex", justifyContent: "center" }}>
       <Button 
         onClick={(e) => {
-          cambiarLogin();
+         saludo()
         }}
       >
         Cambiar nombre

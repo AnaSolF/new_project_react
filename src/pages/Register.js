@@ -4,8 +4,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import { useState } from "react";
 
 const Register = () => {
+ 
   return (
     <div style={{ marginTop: "50px" }}>
           <Container>
@@ -22,6 +24,10 @@ const Register = () => {
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
           </Row>
+          <Form.Group className="mb-3" controlId="formGridUser">
+            <Form.Label>User</Form.Label>
+            <Form.Control placeholder="Username" />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
             <Form.Control placeholder="1234 Main St" />
