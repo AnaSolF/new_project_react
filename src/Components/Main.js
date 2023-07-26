@@ -15,7 +15,7 @@ const Main = (props) => {
   let { usuario }= useUserContextProvider();
   let{ saludo } = useUserContextProvider();
  
-  console.log(defaultState)
+  console.log(usuario)
   return (
     <>
       <div className={styles.main}>

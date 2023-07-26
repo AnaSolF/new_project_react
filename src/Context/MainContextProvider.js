@@ -22,9 +22,17 @@ const MainContextProvider = ({ children }) => {
     darkMode: false,
     user: "Anonimous",
   });
+
+  const cambiarEstado = (newState) => {
+    setDefaultState(newState)
+  }
+
   //Envolvemos con el primer contexto y con el segundo (como los separé, ahora están en app) y pasamos los values para c/u
   return (
-    <MainContext.Provider value={{defaultState}}>
+    <MainContext.Provider
+      value={{
+        defaultState
+      }}>
      {children}
     </MainContext.Provider>
   );

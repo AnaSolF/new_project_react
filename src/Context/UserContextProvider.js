@@ -7,42 +7,106 @@ export const useUserContextProvider = () => useContext(UserContext); //Otro HOOK
 const UserContextProvider = ({ children }) => {
   //Pasar objeto como array
   const [usuario, setUsuario] = useState({
-    id: 1,
-    username: "asf7707",
-    name: "Ana Sol Franchisena",
-    bio: "Full Stack Developer",
-    avatarUrl: "https://iili.io/HQHh8QV.jpg",
-    adress: "",
+    username: "",
+    bio: "",
+    avatarUrl: "",
+    address: "",
     email: "",
     password: "",
     state: "",
-    zip: 0,
-    checkbox: false,
+    zip: "",
   });
 
-  const saludo = () => { alert("Hola " + usuario.username)};
-//   const cambiarUsuario = (usuario) => {
-//     setUsuario({
-//       id: 0,
-//       username: "",
-//       name: "",
-//       bio: "",
-//       avatarUrl: "",
-//       adress: "",
-//       email: "",
-//       state: "",
-//       zip: 0,
-//       checkbox: false,
-//     });
-    //     };
-  
+  const saludo = () => {
+    alert("Hola " + usuario.username);
+  };
+
+  const nuevoUsuario = (
+    newUsername,
+    newBio,
+    newAvataUrl,
+    newAddress,
+    newEmail,
+    newPass,
+    newState,
+    newZip
+  ) =>
+    setUsuario({
+      ...usuario,
+      username: newUsername,
+      bio: newBio,
+      avatarUrl: newAvataUrl,
+      address: newAddress,
+      email: newEmail,
+      password: newPass,
+      state: newState,
+      zip: newZip,
+    });
+
+  const setEmail = (newEmail) => setUsuario({ ...usuario, email: newEmail });
+
+  const setPass = (newPass) =>
+    setUsuario({
+      ...usuario,
+      password: newPass
+    });
+
+  const setUsername = (newUsername) =>
+    setUsuario({
+      ...usuario,
+      username: newUsername,
+    });
+
+  const setBio = (newBio) =>
+    setUsuario({
+      ...usuario,
+      bio: newBio
+    });
+
+  const setAvatarUrl = (newAvatarUrl) =>
+    setUsuario({
+      ...usuario,
+      avatarUrl: newAvatarUrl
+    });
+
+  const setAddress = (newAddress) => {
+    setUsuario({
+      ...usuario,
+      address: newAddress,
+    });
+  };
+
+  const setState = (newState) => {
+    setUsuario({
+      ...usuario,
+      state: newState,
+    });
+  };
+
+  const setZip = (newZip) => {
+    setUsuario({
+      ...usuario,
+      zip: newZip,
+    });
+  };
+
   return (
-    <UserContext.Provider value={{
-      usuario,
-      saludo
-    }}>
-        {children}
-      </UserContext.Provider>
+    <UserContext.Provider
+      value={{
+        usuario,
+        saludo,
+        setEmail,
+        setPass,
+        setUsername,
+        setBio,
+        setAvatarUrl,
+        setAddress,
+        setState,
+        setZip,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
   );
 };
 
