@@ -1,16 +1,21 @@
 import React from 'react'
 import { useState } from 'react';
-import { useMainContextProvider, useUserToggleContext } from '@/Context/MainContextProvider';
+import { useUserContextProvider } from '@/Context/UserContextProvider';
 import { Button } from 'react-bootstrap';
 import styles from "../styles/profile.module.css"
+
+
 const Profile = () => {
 
-  let usuario = useMainContextProvider();
-  const saludo = useUserToggleContext()
+  let { nuevoUser } = useUserContextProvider();
+  let { saludo } = useUserContextProvider();
+  var newUserName = nuevoUser();
+  console.log(newUserName);
 
+  
   return (
     <div className={styles.Sidebar}>
-      {usuario.map((propiedad) => {
+      {/* {usuario.map((propiedad) => {
         return (<div className={styles.user} key={propiedad.id}>
         <img style={{width:"100px", height:"100px"}} alt="Profile" src={propiedad.avatarUrl} />
         <h2>{propiedad.name}</h2>
@@ -21,9 +26,9 @@ const Profile = () => {
         </div>
         
         </div>)
-      })}
+      })} */}
       <Button style={{
-        width: "100px", margin: "0 auto"}} onClick={() => { saludo() }}>Saludar</Button>
+        width: "100px", margin: "0 auto"}} onClick={() => { saludo(newUserName) }}>Saludar</Button>
     </div>
   );
 }
@@ -36,9 +41,3 @@ function Content() {
 }
 
 export default Profile
-
-//Necesita recibir algunas variables y funciones del contexto inicial y setearlas
-//isLoggedIn
-//userName
-//Ver Cart 
-//Agregar Imagen de perfil (Ver si acceder a banco de imágenes o subir)

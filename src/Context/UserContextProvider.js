@@ -6,7 +6,8 @@ export const useUserContextProvider = () => useContext(UserContext); //Otro HOOK
 
 const UserContextProvider = ({ children }) => {
   //Pasar objeto como array
-  const [usuario, setUsuario] = useState({
+  let [usuario, setUsuario] = useState({
+    //id: "",
     username: "",
     bio: "",
     avatarUrl: "",
@@ -17,11 +18,14 @@ const UserContextProvider = ({ children }) => {
     zip: "",
   });
 
-  const saludo = () => {
-    alert("Hola " + usuario.username);
+  const saludo = (newUserName) => {
+    alert("Hola " + newUserName);
   };
 
+  //Seter objeto usuario completo
+
   const nuevoUsuario = (
+   // newId,
     newUsername,
     newBio,
     newAvataUrl,
@@ -33,6 +37,7 @@ const UserContextProvider = ({ children }) => {
   ) =>
     setUsuario({
       ...usuario,
+     // id: newId,
       username: newUsername,
       bio: newBio,
       avatarUrl: newAvataUrl,
@@ -43,7 +48,20 @@ const UserContextProvider = ({ children }) => {
       zip: newZip,
     });
 
-  const setEmail = (newEmail) => setUsuario({ ...usuario, email: newEmail });
+  
+  //Separo los seter de las propiedades del objeto, para poder capturar los valores de los inputs
+  //El set de id no se
+  // const setId = (newId) =>
+  //   setUsuario({
+  //     ...usuario,
+  //     id: newId
+  //   });
+
+  const setEmail = (newEmail) =>
+    setUsuario({
+      ...usuario,
+      email: newEmail
+    });
 
   const setPass = (newPass) =>
     setUsuario({
@@ -89,6 +107,23 @@ const UserContextProvider = ({ children }) => {
       zip: newZip,
     });
   };
+ 
+  const guardar = () => {
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+  };
+
+  const nuevoUser = () => {
+    if (typeof window !== "undefined") {
+      // Obtener el objeto almacenado en el localStorage
+      let usuario = localStorage.getItem("usuario");
+      if (usuario) {
+        // Convertir el objeto JSON a un objeto JavaScript
+        usuario = JSON.parse(usuario);
+        var newUserName = usuario.username
+        return newUserName;
+      }
+    }
+  };
 
   return (
     <UserContext.Provider
@@ -103,6 +138,12 @@ const UserContextProvider = ({ children }) => {
         setAddress,
         setState,
         setZip,
+        guardar,
+        //getUser,
+        //setId,
+        nuevoUsuario,
+        nuevoUser
+        
       }}
     >
       {children}

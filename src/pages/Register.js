@@ -6,9 +6,11 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { useState } from "react";
 import { useUserContextProvider } from "@/Context/UserContextProvider";
-
+import { useRouter } from 'next/router'
 const Register = () => {
-  
+
+  //Traigo las funciones set desde el contexto, para tomar los valores ingresados por el input y poder setear la variable usuario y almacenar en localStorage (después, usar los mismos values para post a base de datos)
+
   var { usuario } = useUserContextProvider();
 
   let { saludo } = useUserContextProvider();
@@ -29,61 +31,48 @@ const Register = () => {
 
   let { setZip } = useUserContextProvider();
 
+  let { guardar } = useUserContextProvider();
+  
+  let  { getUser } = useUserContextProvider();
+
+  const router = useRouter();
+
   const handleChangeEmail = (value) => {
-    setEmail(
-     value
-    )
-  }
+    setEmail(value);
+  };
 
   const handleChangePass = (value) => {
-    setPass(
-        value
-    )
-  }
+    setPass(value);
+  };
 
   const handleChangeUsername = (value) => {
-    setUsername(
-        value
-    )
-  }
+    setUsername(value);
+  };
   const handleChangeAvatar = (value) => {
-    setAvatarUrl(
-      value
-    )
+    setAvatarUrl(value);
   };
 
   const handleChangeAddress = (value) => {
-    setAddress(
-      value
-    )
+    setAddress(value);
   };
 
-const handleChangeState = (value) => {
-    setState(
-      value
-    )
+  const handleChangeState = (value) => {
+    setState(value);
   };
 
   const handleChangeZip = (value) => {
-    setZip(
-      value
-    )
+    setZip(value);
   };
-  
-  const getUser = () => {
-    localStorage.getItem(usuario)
-    console.log(usuario)
-  }
-  
+
   const LoadNewUser = () => {
-    localStorage.setItem('usuario', JSON.stringify(usuario))
-  }
-  
+    guardar()
+    router.push("/Profile");
+  };
+
   return (
     <div style={{ marginTop: "50px" }}>
       <Container>
-        <h2 style={{ textAlign: "center", paddingBottom: "50px" }}>
-        </h2>
+        <h2 style={{ textAlign: "center", paddingBottom: "50px" }}></h2>
         <Form>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridEmail">
@@ -96,10 +85,9 @@ const handleChangeState = (value) => {
                 value={usuario.email}
                 onChange={(e) => {
                   const { value } = e.target;
-                  handleChangeEmail(value) 
+                  handleChangeEmail(value);
                   e.preventDefault;
                 }}
-
               />
             </Form.Group>
 
@@ -113,7 +101,7 @@ const handleChangeState = (value) => {
                 value={usuario.password}
                 onChange={(e) => {
                   const { value } = e.target;
-                  handleChangePass(value) 
+                  handleChangePass(value);
                   e.preventDefault;
                 }}
               />
@@ -129,7 +117,7 @@ const handleChangeState = (value) => {
               value={usuario.username}
               onChange={(e) => {
                 const { value } = e.target;
-                handleChangeUsername(value) 
+                handleChangeUsername(value);
                 e.preventDefault;
               }}
             />
@@ -144,7 +132,7 @@ const handleChangeState = (value) => {
               value={usuario.address}
               onChange={(e) => {
                 const { value } = e.target;
-                handleChangeAddress(value) 
+                handleChangeAddress(value);
                 e.preventDefault;
               }}
             />
@@ -159,7 +147,7 @@ const handleChangeState = (value) => {
                 value={usuario.state}
                 onChange={(e) => {
                   const { value } = e.target;
-                  handleChangeState(value) 
+                  handleChangeState(value);
                   e.preventDefault;
                 }}
               />
@@ -174,7 +162,7 @@ const handleChangeState = (value) => {
                 value={usuario.zip}
                 onChange={(e) => {
                   const { value } = e.target;
-                  handleChangeZip(value) 
+                  handleChangeZip(value);
                   e.preventDefault;
                 }}
               />
@@ -189,7 +177,7 @@ const handleChangeState = (value) => {
             variant="primary"
             //type="submit"
             onClick={(e) => {
-              LoadNewUser()
+              LoadNewUser();
             }}
             style={{ float: "right" }}
           >
@@ -200,6 +188,5 @@ const handleChangeState = (value) => {
     </div>
   );
 };
-
 
 export default Register;
