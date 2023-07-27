@@ -18,14 +18,14 @@ const UserContextProvider = ({ children }) => {
     zip: "",
   });
 
-  const saludo = (newUserName) => {
-    alert("Hola " + newUserName);
+  const saludo = (usDat) => {
+    alert("Hola " + usDat);
   };
 
   //Seter objeto usuario completo
 
   const nuevoUsuario = (
-   // newId,
+    // newId,
     newUsername,
     newBio,
     newAvataUrl,
@@ -37,7 +37,7 @@ const UserContextProvider = ({ children }) => {
   ) =>
     setUsuario({
       ...usuario,
-     // id: newId,
+      // id: newId,
       username: newUsername,
       bio: newBio,
       avatarUrl: newAvataUrl,
@@ -48,7 +48,6 @@ const UserContextProvider = ({ children }) => {
       zip: newZip,
     });
 
-  
   //Separo los seter de las propiedades del objeto, para poder capturar los valores de los inputs
   //El set de id no se
   // const setId = (newId) =>
@@ -60,13 +59,13 @@ const UserContextProvider = ({ children }) => {
   const setEmail = (newEmail) =>
     setUsuario({
       ...usuario,
-      email: newEmail
+      email: newEmail,
     });
 
   const setPass = (newPass) =>
     setUsuario({
       ...usuario,
-      password: newPass
+      password: newPass,
     });
 
   const setUsername = (newUsername) =>
@@ -78,13 +77,13 @@ const UserContextProvider = ({ children }) => {
   const setBio = (newBio) =>
     setUsuario({
       ...usuario,
-      bio: newBio
+      bio: newBio,
     });
 
   const setAvatarUrl = (newAvatarUrl) =>
     setUsuario({
       ...usuario,
-      avatarUrl: newAvatarUrl
+      avatarUrl: newAvatarUrl,
     });
 
   const setAddress = (newAddress) => {
@@ -107,23 +106,33 @@ const UserContextProvider = ({ children }) => {
       zip: newZip,
     });
   };
- 
+
   const guardar = () => {
     localStorage.setItem("usuario", JSON.stringify(usuario));
   };
 
   const nuevoUser = () => {
-    if (typeof window !== "undefined") {
-      // Obtener el objeto almacenado en el localStorage
-      let usuario = localStorage.getItem("usuario");
-      if (usuario) {
-        // Convertir el objeto JSON a un objeto JavaScript
-        usuario = JSON.parse(usuario);
-        var newUserName = usuario.username
-        return newUserName;
-      }
+    const usuario =
+      typeof window !== "undefined" ? localStorage.getItem("usuario") : "";
+    if (usuario) {
+      // Convertir el objeto JSON a un objeto JavaScript
+      const parsedUsuario = JSON.parse(usuario);
+      const newUserName = parsedUsuario.username;
+      return newUserName;
     }
+
+    return null;
   };
+
+  const handleOnload = (e) => {
+    var newUserName = nuevoUser();
+    if (usuario == "") {
+      guardar();
+    }
+    
+  };
+
+  var newUserName = nuevoUser();
 
   return (
     <UserContext.Provider
@@ -142,8 +151,9 @@ const UserContextProvider = ({ children }) => {
         //getUser,
         //setId,
         nuevoUsuario,
-        nuevoUser
-        
+        nuevoUser,
+        handleOnload,
+        newUserName,
       }}
     >
       {children}

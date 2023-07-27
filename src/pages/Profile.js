@@ -3,17 +3,26 @@ import { useState } from 'react';
 import { useUserContextProvider } from '@/Context/UserContextProvider';
 import { Button } from 'react-bootstrap';
 import styles from "../styles/profile.module.css"
-
+import data from "../Data/Data.json";
+import Header from '@/Components/Header';
 
 const Profile = () => {
 
+  var { usuario } = useUserContextProvider();
+  var { setUsuario } = useUserContextProvider();
+  var { newUserName } = useUserContextProvider();
+  var { saludo } = useUserContextProvider();
   let { nuevoUser } = useUserContextProvider();
-  let { saludo } = useUserContextProvider();
-  var newUserName = nuevoUser();
-  console.log(newUserName);
-
+  const { userLoad } = data;
+  let usDat = userLoad.username;
+  usDat = newUserName;
+  let { handleOnload } = useUserContextProvider();
+  
+  
+  handleOnload();
   
   return (
+    <><Header />
     <div className={styles.Sidebar}>
       {/* {usuario.map((propiedad) => {
         return (<div className={styles.user} key={propiedad.id}>
@@ -24,12 +33,13 @@ const Profile = () => {
           Seguidores: {propiedad.followers}, Seguidos: {propiedad.following}, Estrellas:{" "}
           {propiedad.stars}
         </div>
-        
         </div>)
       })} */}
       <Button style={{
-        width: "100px", margin: "0 auto"}} onClick={() => { saludo(newUserName) }}>Saludar</Button>
-    </div>
+          width: "100px", margin: "0 auto"
+        }} onClick={() => { }}>Prueba</Button>
+      </div>
+      </>
   );
 }
 function Content() {

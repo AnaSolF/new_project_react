@@ -184,6 +184,9 @@ const Register = () => {
             Submit
           </Button>
         </Form>
+
+        <Button>Login</Button>
+        <Button href="Profile/">Perfil</Button>
       </Container>
     </div>
   );

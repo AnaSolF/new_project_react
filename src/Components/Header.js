@@ -11,16 +11,20 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import { useContext } from "react";
 import { useState } from "react";
 import { useUserContextProvider } from "@/Context/UserContextProvider";
+import data from "../Data/Data.json";
 
-const Header = () => {
+const Header = (props) => {
   var { usuario } = useUserContextProvider();
   var { setUsuario } = useUserContextProvider();
-
+  var { newUserName } = useUserContextProvider();
   let { nuevoUser } = useUserContextProvider();
+  let { userLoad } = data;
+  let usDat = userLoad.username;
+  let { handleOnload } = useUserContextProvider();
 
-  var newUserName = nuevoUser();
-  console.log(newUserName);
+  usDat = newUserName;
 
+  handleOnload();
   return (
     <>
       {["lg"].map((expand) => (
@@ -39,17 +43,7 @@ const Header = () => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                {[usuario].map((pro) => {
-                  return (
-                    <div key={pro.username}>
-                      <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <Nav.Link href="/Profile">
-                          Bienvenido/a: {newUserName}
-                        </Nav.Link>
-                      </Nav>
-                    </div>
-                  );
-                })}
+                <div> Usuario: </div>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="/CustomLogin">Ingresar</Nav.Link>
                   <Nav.Link href="/Register">Registrarme</Nav.Link>

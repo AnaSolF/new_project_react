@@ -1,0 +1,12 @@
+{
+    "userLoad": {
+        "username": "",
+        "bio" : "",
+        "avatarUrl": "",
+        "address": "",
+        "email": "",
+        "password": "",
+        "state": "",
+        "zip": ""
+    }
+}
