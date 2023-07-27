@@ -18,8 +18,9 @@ const UserContextProvider = ({ children }) => {
     zip: "",
   });
 
-  const saludo = (usDat) => {
-    alert("Hola " + usDat);
+  const saludo = () => {
+    alert("Hola " + newUserName);
+    console.log(newUserName)
   };
 
   //Seter objeto usuario completo
@@ -118,19 +119,14 @@ const UserContextProvider = ({ children }) => {
       // Convertir el objeto JSON a un objeto JavaScript
       const parsedUsuario = JSON.parse(usuario);
       const newUserName = parsedUsuario.username;
+      console.log(newUserName)
       return newUserName;
     }
 
     return null;
   };
 
-  const handleOnload = (e) => {
-    var newUserName = nuevoUser();
-    if (usuario == "") {
-      guardar();
-    }
-    
-  };
+
 
   var newUserName = nuevoUser();
 
@@ -152,7 +148,6 @@ const UserContextProvider = ({ children }) => {
         //setId,
         nuevoUsuario,
         nuevoUser,
-        handleOnload,
         newUserName,
       }}
     >

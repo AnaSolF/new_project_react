@@ -3,24 +3,14 @@ import { useState } from 'react';
 import { useUserContextProvider } from '@/Context/UserContextProvider';
 import { Button } from 'react-bootstrap';
 import styles from "../styles/profile.module.css"
-import data from "../Data/Data.json";
 import Header from '@/Components/Header';
 
 const Profile = () => {
-
-  var { usuario } = useUserContextProvider();
-  var { setUsuario } = useUserContextProvider();
   var { newUserName } = useUserContextProvider();
   var { saludo } = useUserContextProvider();
-  let { nuevoUser } = useUserContextProvider();
-  const { userLoad } = data;
-  let usDat = userLoad.username;
-  usDat = newUserName;
-  let { handleOnload } = useUserContextProvider();
-  
-  
-  handleOnload();
-  
+ 
+  newUserName
+
   return (
     <><Header />
     <div className={styles.Sidebar}>
@@ -37,7 +27,7 @@ const Profile = () => {
       })} */}
       <Button style={{
           width: "100px", margin: "0 auto"
-        }} onClick={() => { }}>Prueba</Button>
+        }} onClick={() => { saludo() }}>Prueba</Button>
       </div>
       </>
   );
