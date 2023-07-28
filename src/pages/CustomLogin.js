@@ -3,12 +3,18 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useUserContextProvider } from '@/Context/UserContextProvider';
 
 const CustomLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email)
+  var { newUserName } = useUserContextProvider();
+  
+  useEffect(() => {
+    newUserName
+  }, [])
+
   return (
     <>
       <div style={{ marginTop: "50px" }}>

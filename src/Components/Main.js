@@ -7,7 +7,8 @@ import { CartContext } from "@/Context/CartContext";
 
 
 const Main = (  ) => {
-
+  var { guardarState } = useMainContextProvider();
+  guardarState()
   return (
     <>
       <div className={styles.main}>

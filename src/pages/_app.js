@@ -5,7 +5,6 @@ import UserContextProvider from "@/Context/UserContextProvider";
 import CartContextProvider from "@/Context/CartContext";
 
 export default function App({ Component, pageProps }) {
- 
   //Envolvemos en el contexto app (A todo lo que querramos aplicar el context)
   return (
     <MainContextProvider>

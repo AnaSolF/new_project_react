@@ -6,9 +6,10 @@ import Header from "@/Components/Header";
 import Main from "@/Components/Main";
 import Footer from "@/Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { hydrateRoot } from 'react-dom/client';
 
 const inter = Inter({ subsets: ["latin"] });
+
 
 export default function Home() {
 

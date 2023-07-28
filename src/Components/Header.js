@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,10 +13,10 @@ import { useUserContextProvider } from "@/Context/UserContextProvider";
 //Usamos un condicional para mostrar o no el usuario;
 
 const Header = (props) => {
-  var { newUserName } = useUserContextProvider();
 
-  newUserName;
-  console.log(newUserName)
+  // var { newUserName } = useUserContextProvider();
+  
+ 
   return (
     <>
       {["lg"].map((expand) => (
@@ -30,14 +30,12 @@ const Header = (props) => {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Pedi Ya
-                </Offcanvas.Title>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} suppressHydrationWarning={true}>
+              {/* Usuario: {`${newUserName}`} */}
+                </Offcanvas.Title> 
               </Offcanvas.Header>
               <Offcanvas.Body>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand1-${expand}`} suppressHydrationWarning={true}>
-              Usuario: {`${newUserName}`}
-                </Offcanvas.Title> 
+             
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="/CustomLogin">Ingresar</Nav.Link>
                   <Nav.Link href="/Register">Registrarme</Nav.Link>

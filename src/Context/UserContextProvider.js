@@ -1,9 +1,10 @@
 import React from "react";
 import { useContext, setContext } from "react";
 import { useState } from "react";
+
+
 export const UserContext = React.createContext();
 export const useUserContextProvider = () => useContext(UserContext); //Otro HOOK personalizado par pasar función
-
 const UserContextProvider = ({ children }) => {
   //Pasar objeto como array
   let [usuario, setUsuario] = useState({
@@ -109,26 +110,28 @@ const UserContextProvider = ({ children }) => {
   };
 
   const guardar = () => {
-    localStorage.setItem("usuario", JSON.stringify(usuario));
+    if (typeof window !== "undefined")
+    {localStorage.setItem("usuario", JSON.stringify(usuario));}
   };
 
-  const nuevoUser = () => {
-    const usuario =
-      typeof window !== "undefined" ? localStorage.getItem("usuario") : "";
-    if (usuario) {
-      // Convertir el objeto JSON a un objeto JavaScript
-      const parsedUsuario = JSON.parse(usuario);
-      const newUserName = parsedUsuario.username;
-      console.log(newUserName)
-      return newUserName;
-    }
+//Función con error. Resolver con almacenar datos en base de datos
+  // const nuevoUser = () => {
+  //   let usuario;
+  //   // Verificar si estamos en el cliente (navegador)
+  // if (typeof window !== "undefined") {
+  //   usuario = window.localStorage.getItem("usuario");
+  //   if (usuario) {
+  //     // Convertir el objeto JSON a un objeto JavaScript
+  //     const parsedUsuario = JSON.parse(usuario);
+  //     newUserName = parsedUsuario.username;
+  //   }
+  //   }
+  //   console.log(newUserName)
+  //   return newUserName
+    
+  // };
 
-    return null;
-  };
-
-
-
-  var newUserName = nuevoUser();
+  // var newUserName = nuevoUser();
 
   return (
     <UserContext.Provider
