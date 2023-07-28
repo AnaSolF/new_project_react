@@ -15,8 +15,6 @@ import { useUserContextProvider } from "@/Context/UserContextProvider";
 const Header = (props) => {
 
   // var { newUserName } = useUserContextProvider();
-  
- 
   return (
     <>
       {["lg"].map((expand) => (

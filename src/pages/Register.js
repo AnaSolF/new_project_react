@@ -1,195 +1,123 @@
-import React, { useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
+import React from "react";
+import styles from "@/styles/Login.module.css";
+import { Nav, Button } from "react-bootstrap";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 import { useState } from "react";
-import { useUserContextProvider } from "@/Context/UserContextProvider";
-import { useRouter } from 'next/router'
-const Register = () => {
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "../Firebase/InitConfig";
+import { useRouter } from "next/router";
 
-  //Traigo las funciones set desde el contexto, para tomar los valores ingresados por el input y poder setear la variable usuario y almacenar en localStorage (después, usar los mismos values para post a base de datos)
+export default function CustomLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const auth = getAuth();
+  const router = useRouter("");
 
-  var { usuario } = useUserContextProvider();
+  function handleSubmit() {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        handleRegister(email, password);
+        const user = userCredential.user;
+        console.log(user);
+        if (user) {
+          router.push("/CustomLogin");
+        }
+        alert("Registro exitoso");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // console.error(`Error (${errorCode}): ${errorMessage}`);
+        if (errorCode === "auth/email-already-in-use") {
+          alert("Verifique que su email no se encuentre registrado");
+        }
+        if (errorCode === "auth/missing-password") {
+          alert("Password inválido");
+        }
+      });
+  }
 
-  let { saludo } = useUserContextProvider();
+  function validateEmail(email) {
+    // Validar el formato del correo electrónico utilizando una expresión regular
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
-  let { nuevoUsuario } = useUserContextProvider();
+  function validatePassword(password) {
+    // Validar contraseña
+    return password.length >= 8 && password != null;
+  }
 
-  let { setEmail } = useUserContextProvider();
+  function handleRegister(email, password) {
+    if (!validateEmail(email)) {
+      alert("Ingrese un email válido");
+    }
 
-  let { setPass } = useUserContextProvider();
-
-  let { setUsername } = useUserContextProvider();
-
-  let { setAvatarUrl } = useUserContextProvider();
-
-  let { setAddress } = useUserContextProvider();
-
-  let { setState } = useUserContextProvider();
-
-  let { setZip } = useUserContextProvider();
-
-  let { guardar } = useUserContextProvider();
-  
-  let  { getUser } = useUserContextProvider();
-
-  const router = useRouter();
-
-  const handleChangeEmail = (value) => {
-    setEmail(value);
-  };
-
-  const handleChangePass = (value) => {
-    setPass(value);
-  };
-
-  const handleChangeUsername = (value) => {
-    setUsername(value);
-  };
-  const handleChangeAvatar = (value) => {
-    setAvatarUrl(value);
-  };
-
-  const handleChangeAddress = (value) => {
-    setAddress(value);
-  };
-
-  const handleChangeState = (value) => {
-    setState(value);
-  };
-
-  const handleChangeZip = (value) => {
-    setZip(value);
-  };
-
-  const LoadNewUser = () => {
-    guardar()
-    router.push("/Profile");
-  };
+    if (!validatePassword(password)) {
+      alert("Ingrese una contraseña de más de 8 caracteres");
+    }
+  }
 
   return (
-    <div style={{ marginTop: "50px" }}>
-      <Container>
-        <h2 style={{ textAlign: "center", paddingBottom: "50px" }}></h2>
-        <Form>
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                required
-                value={usuario.email}
-                onChange={(e) => {
-                  const { value } = e.target;
-                  handleChangeEmail(value);
-                  e.preventDefault;
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-                value={usuario.password}
-                onChange={(e) => {
-                  const { value } = e.target;
-                  handleChangePass(value);
-                  e.preventDefault;
-                }}
-              />
-            </Form.Group>
-          </Row>
-          <Form.Group className="mb-3" controlId="formGridUser">
-            <Form.Label>User</Form.Label>
-            <Form.Control
-              placeholder="Username"
-              type="text"
-              name="username"
-              required
-              value={usuario.username}
-              onChange={(e) => {
-                const { value } = e.target;
-                handleChangeUsername(value);
-                e.preventDefault;
+    <>
+      <div className={styles.fondo}>
+        <div className={styles.login}>
+          <div className={styles.formulario}>
+            <Nav.Link href="#">
+              Login
+            </Nav.Link>
+            <br></br>
+            <h4 style={{ padding: "10px" }}>Registráte con tu Email</h4>
+            <p style={{ fontSize: "small" }}>Ingresá tus datos</p>
+            <Form>
+              <FloatingLabel label="Email address" className="mb-3">
+                <Form.Control
+                  type="email"
+                  placeholder="name@example.com"
+                  id="email"
+                  required
+                  value={email}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    e.preventDefault;
+                    setEmail(value);
+                  }}
+                />
+              </FloatingLabel>
+              <FloatingLabel label="Password">
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  required
+                  id="password"
+                  value={password}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    e.preventDefault;
+                    setPassword(value);
+                  }}
+                />
+              </FloatingLabel>
+            </Form>
+            {/* <p style={{ fontSize: "small", marginTop: "10px" }}>
+            Olvidé mi contraseña
+          </p> */}
+            <Button
+              type="submit"
+              onClick={(e) => {
+                handleSubmit({ email, password });
               }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGridAddress1">
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              placeholder="1234 Main St"
-              required
-              type="text"
-              name="address"
-              value={usuario.address}
-              onChange={(e) => {
-                const { value } = e.target;
-                handleChangeAddress(value);
-                e.preventDefault;
-              }}
-            />
-          </Form.Group>
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridState">
-              <Form.Label>State</Form.Label>
-              <Form.Control
-                placeholder="State"
-                type="text"
-                name="state"
-                value={usuario.state}
-                onChange={(e) => {
-                  const { value } = e.target;
-                  handleChangeState(value);
-                  e.preventDefault;
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridZip">
-              <Form.Label>Zip</Form.Label>
-              <Form.Control
-                placeholder="Zip"
-                type="number"
-                name="zip"
-                value={usuario.zip}
-                onChange={(e) => {
-                  const { value } = e.target;
-                  handleChangeZip(value);
-                  e.preventDefault;
-                }}
-              />
-            </Form.Group>
-          </Row>
-
-          <Form.Group className="mb-3" id="formGridCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-
-          <Button
-            variant="primary"
-            //type="submit"
-            onClick={(e) => {
-              LoadNewUser();
-            }}
-            style={{ float: "right" }}
-          >
-            Submit
-          </Button>
-        </Form>
-
-        <Button>Login</Button>
-        <Button href="Profile/">Perfil</Button>
-      </Container>
-    </div>
+              className={styles.botonContinuar}
+            >
+              Registrarme
+            </Button>
+            <Button href="/CustomLogin" className={styles.botonLogin}>
+              Ya tengo cuenta
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
   );
-};
-
-export default Register;
+}

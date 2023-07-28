@@ -6,15 +6,12 @@ import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import { useUserContextProvider } from '@/Context/UserContextProvider';
 
+
 const CustomLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  var { newUserName } = useUserContextProvider();
-  
-  useEffect(() => {
-    newUserName
-  }, [])
-
+ // var { newUserName } = useUserContextProvider();
+ 
   return (
     <>
       <div style={{ marginTop: "50px" }}>

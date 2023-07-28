@@ -1,0 +1,218 @@
+.login {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.529);
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1%;
+}
+
+.loginUno {
+    margin: 0 auto;
+    height: 100vh;
+    width: 100%;
+    border-radius: 10px;
+    background: linear-gradient(rgb(225, 14, 84) 40%, white 40%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.fondo{
+    background: linear-gradient(rgb(225, 14, 84) 40%, white 40%); 
+    margin: 0 auto;
+    height: 100vh;
+    width: 100%; 
+}
+
+.No {
+    padding-left: 70%;
+    margin: 15px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.logos {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    height: 50vh;
+    padding-bottom: 35%;
+}
+
+.loginBody,
+.container {
+    margin-bottom: 30%;
+    height: 50vh;
+}
+
+.formulario{
+    background-color:rgb(237, 233, 227);
+}
+
+.form{
+    background-color: rgb(214, 3, 45);
+    color: white;
+}
+
+.formulario,
+.form{
+margin-top: 15%;
+padding: 20px;
+height: 85vh;
+width: 90%;
+border-radius: 10px;
+}
+
+.botonContinuar{
+    background-color: rgb(241, 94, 119);
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+}
+
+.botonContinuar:hover{
+    background-color: rgb(187, 14, 43);
+}
+
+.botonLogin{
+    background-color:rgb(205, 175, 6);
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+}
+   
+
+.logoP {
+    margin-left: 40px;
+}
+
+.titulo {
+    padding-top: 5%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.btnNav {
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 90%;
+    font-size: small;
+    text-align: justify;
+}
+
+.parrafo {
+    font-size: x-small;
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10px;
+}
+
+.dark{
+    margin: 0 auto;
+    height: 95vh;
+    width: 90%;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.nav{
+width: 100%;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+/* .logoP1 {
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.logoP{
+    margin-left: 30px;
+} */
+
+
+@media only screen and (min-width: 801px) {
+    
+    .loginUno {
+        height: 80vh;
+        width: 33%;
+        display: flex;
+        margin-bottom: 20%;
+    }
+
+
+    .btnNav {
+        width: 50%;
+    }
+
+    .parrafo {
+        font-size: small;
+        text-align: center;
+        padding: 30px 10%;
+    }
+
+    .titulo {
+        padding-top: 0px;
+    }
+
+    .logos {
+        padding-bottom: 15%;
+    }
+
+    .formulario,
+    .form{
+        margin-top: 8%;
+        width: 35%;
+        height: 70vh;
+    }
+}
+
+
+@media only screen and (max-width: 916px) and (orientation: landscape) {
+
+    .logos{
+        display: none;
+    }
+
+    .loginUno{
+        padding-top:1%;
+        width: 70%;
+    }
+    .titulo{
+        padding-top: 20px;
+    }
+   
+    .loginBody{
+        background-color: white;
+    }
+
+    .No {
+        color: white;
+    }
+}
+
+@media only screen and (max-width: 321px) {
+    .logos{
+        padding-bottom: 1%;
+    }
+    .No {
+        color: white;
+    }
+
+}

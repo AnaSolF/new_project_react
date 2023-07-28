@@ -7,7 +7,7 @@ import Header from '@/Components/Header';
 
 const Profile = () => {
   // var { newUserName } = useUserContextProvider();
-  var { saludo } = useUserContextProvider();
+  // var { saludo } = useUserContextProvider();
   
   // useEffect(() => {
   //   newUserName
@@ -21,17 +21,18 @@ const Profile = () => {
    
       <Button style={{
           width: "100px", margin: "0 auto"
-        }} onClick={() => { saludo() }}>Prueba</Button>
+        }} onClick={() => { }}>Prueba</Button>
       </div>
       </>
   );
 }
-function Content() {
-  return (
-    <div class="Content">
-      <h2>Proyectos</h2>
-    </div>
-  );
-}
+
+// function Content() {
+//   return (
+//     <div class="Content">
+//       <h2>Proyectos</h2>
+//     </div>
+//   );
+// }
 
 export default Profile

@@ -19,10 +19,10 @@ const UserContextProvider = ({ children }) => {
     zip: "",
   });
 
-  const saludo = () => {
-    alert("Hola " + newUserName);
-    console.log(newUserName)
-  };
+  // const saludo = () => {
+  //   alert("Hola " + newUserName);
+  //   console.log(newUserName)
+  // };
 
   //Seter objeto usuario completo
 
@@ -137,7 +137,7 @@ const UserContextProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         usuario,
-        saludo,
+        //saludo,
         setEmail,
         setPass,
         setUsername,
@@ -150,8 +150,8 @@ const UserContextProvider = ({ children }) => {
         //getUser,
         //setId,
         nuevoUsuario,
-        nuevoUser,
-        newUserName,
+        // nuevoUser,
+        // newUserName,
       }}
     >
       {children}
