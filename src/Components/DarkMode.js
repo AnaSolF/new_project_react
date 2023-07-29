@@ -1,14 +1,21 @@
 import { useContext } from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import styles from "../styles/Home.module.css"
+import { useMainContextProvider } from "@/Context/MainContextProvider";
+import { BsSunrise } from "react-icons/bs";
+import { BsSunsetFill } from "react-icons/bs";
+
 
 
 // Lo pasamos a funcional al tener contexto...
 export default function Darkmode(props) {
-  const { darkMode, setDarkmode } = useContext(myContext);
-  let [isToggleOn, setToggle] = useState({ darkMode });
+  var { setDarkmode } = useMainContextProvider();
+  var { defaultState } = useMainContextProvider();
 
+  var darkMode = defaultState.darkMode
+
+  let [isToggleOn, setToggle] = useState({ darkMode });
+  
   return (
     <>
       <Button
@@ -19,7 +26,7 @@ export default function Darkmode(props) {
           setDarkmode(isToggleOn);
         }}
       >
-        {isToggleOn ? a : b }
+        {isToggleOn ? <BsSunrise /> :  <BsSunsetFill />}
       </Button>
     </>
   );

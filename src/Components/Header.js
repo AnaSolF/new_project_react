@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useUserContextProvider } from "@/Context/UserContextProvider";
+import Darkmode from "./DarkMode";
 
 //Para usar contexto
 //Import useContext
@@ -28,7 +29,8 @@ const Header = (props) => {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} suppressHydrationWarning={true}>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  <Darkmode />
               {/* Usuario: {`${newUserName}`} */}
                 </Offcanvas.Title> 
               </Offcanvas.Header>
