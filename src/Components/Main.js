@@ -4,6 +4,7 @@ import { useMainContextProvider } from "@/Context/MainContextProvider";
 import { useUserContextProvider } from "@/Context/UserContextProvider";
 import { Button } from "react-bootstrap";
 import { CartContext } from "@/Context/CartContext";
+import SocialLogin from "./SocialLogin";
 
 
 const Main = (  ) => {
@@ -12,11 +13,11 @@ const Main = (  ) => {
   return (
     <>
       <div className={styles.main}>
-        <h1 className={styles.titulo}>Pedí Ya</h1>
+        <h1 className={styles.titulo}>My Flavor</h1>
         <div className={styles.banner}>Banner</div>
         <main className={styles.principal}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-          
+          <div style={{ display: "flex", margin:"0 auto", flexDirection:"column", width:"80%" }}>
+          <SocialLogin />
           </div>
         </main>
         <div className={styles.productos}></div>

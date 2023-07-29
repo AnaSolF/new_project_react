@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../Firebase/InitConfig";
 import { useRouter } from "next/router";
+//import SocialLogin from "@/Components/SocialLogin";
 
 export default function CustomLogin() {
   const [email, setEmail] = useState("");
@@ -116,6 +117,8 @@ export default function CustomLogin() {
               Ya tengo cuenta
             </Button>
           </div>
+        
+          
         </div>
       </div>
     </>

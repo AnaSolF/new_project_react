@@ -10,11 +10,13 @@ import { app } from "../Firebase/InitConfig";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useMainContextProvider } from "@/Context/MainContextProvider";
 
+
 const CustomLogin = () => {
   const auth = getAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter()
+  
   // let { isLoggedIn }= useMainContextProvider();
 
 //  console.log(isLoggedIn)

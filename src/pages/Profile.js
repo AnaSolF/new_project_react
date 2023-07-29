@@ -21,7 +21,7 @@ const Profile = () => {
    
       <Button style={{
           width: "100px", margin: "0 auto"
-        }} onClick={() => { }}>Prueba</Button>
+        }} href='/'>LogOut</Button>
       </div>
       </>
   );
