@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 const DataUser = () => {
   var { usuario } = useUserContextProvider();
   var { setUsuario } = useUserContextProvider();
+  //var { getUser } = useUserContextProvider();
   let { guardar } = useUserContextProvider();
   const router = useRouter();
   let [data, setData] = useState([]);
@@ -35,6 +36,8 @@ const DataUser = () => {
         res.docs.map((usuario) => ({ id: usuario.id, ...usuario.data() }))
       )
     );
+    //getUser()
+
   }, []);
 
 
@@ -42,27 +45,30 @@ const DataUser = () => {
   const docRef = async () => {
     let db = getFirestore();
     await addDoc(collection(db, "usuarios"), {
-        username: "Pablo",
-        bio: "Chef",
-        avatarUrl: "",
-        address: "Los Pinos 2345",
-        email: "pablo@mail.com",
-        password: "pablito123",
-        state: "Chile",
-        zip: "2345",
+        username: "Juan",
+        bio: "Profesor",
+        avatarUrl: "https://iili.io/HPyjOcg.jpg",
+        address: "Esmeralda 2345",
+        email: "juan@mail.com",
+        password: "juan123",
+        state: "Argentina",
+        zip: "5000",
         });}
 
-    return data.map((usuario, key) => (
+  return (<>
+  {data.map((usuario, key) => (
       <div key={usuario.id} style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <div>
           <img src={usuario.avatarUrl} style={{ width: "100px" }}></img>
         </div>
         <p>Usuario: {usuario.username}</p>
-        <div> <Button
-          onClick={() => docRef()}>Agregar</Button></div>
-     
       </div>
-    ));
+    
+  ))}
+    <Button
+    onClick={()=>{docRef()}}
+    >Agregar</Button>
+  </>)
 };
   
 export default DataUser;

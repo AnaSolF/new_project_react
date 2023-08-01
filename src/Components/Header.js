@@ -21,12 +21,20 @@ const Header = (props) => {
   const router = useRouter("");
   let { isLoggedIn } = useMainContextProvider();
   let { setIsLoggedIn } = useMainContextProvider();
+  let { usuario } = useUserContextProvider(); 
+  let { setUsuario } = useUserContextProvider(); 
+  let { setUsername } = useUserContextProvider(); 
+  
+
   const logOut = () => {
     setIsLoggedIn(false);
     router.push("/");
   };
+   var { newUserName } = useUserContextProvider();
+  
+   
+  
 
-  // var { newUserName } = useUserContextProvider();
   return (
     <>
       {["lg"].map((expand) => (
@@ -42,7 +50,7 @@ const Header = (props) => {
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   <Darkmode />
-              {/* Usuario: {`${newUserName}`} */}
+              Usuario: {`${newUserName}`}
                 </Offcanvas.Title> 
               </Offcanvas.Header>
               <Offcanvas.Body>

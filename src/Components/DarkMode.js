@@ -6,7 +6,6 @@ import { BsSunrise } from "react-icons/bs";
 import { BsSunsetFill } from "react-icons/bs";
 
 
-
 // Lo pasamos a funcional al tener contexto...
 export default function Darkmode(props) {
   var { setDarkmode } = useMainContextProvider();

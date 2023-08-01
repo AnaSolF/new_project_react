@@ -34,11 +34,15 @@ const MainContextProvider = ({ children }) => {
       }
     )
   
-  const guardarState = () => {
+  const guardarState = (newState) => {
     if (typeof window !== "undefined")
     {  localStorage.setItem("defaultState", JSON.stringify(defaultState));}
     };
   
+  
+  const [mensaje, setMensaje] = useState("Hola");
+  
+
   //Envolvemos con el primer contexto y con el segundo (como los separé, ahora están en app) y pasamos los values para c/u
   return (
     <MainContext.Provider
@@ -47,7 +51,9 @@ const MainContextProvider = ({ children }) => {
         nuevoEstado,
         setDarkmode,
         setIsLoggedIn,
-        guardarState
+        guardarState,
+        mensaje,
+        setMensaje
       }}>
      {children}
     </MainContext.Provider>

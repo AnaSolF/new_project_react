@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, setContext } from "react";
 import { useState } from "react";
-
+//import { getFirestore, getDocs, collection, getData, addDoc } from "firebase/firestore";
 
 export const UserContext = React.createContext();
 export const useUserContextProvider = () => useContext(UserContext); //Otro HOOK personalizado par pasar función
@@ -18,11 +18,6 @@ const UserContextProvider = ({ children }) => {
     state: "",
     zip: "",
   });
-
-  // const saludo = () => {
-  //   alert("Hola " + newUserName);
-  //   console.log(newUserName)
-  // };
 
   //Seter objeto usuario completo
 
@@ -114,25 +109,22 @@ const UserContextProvider = ({ children }) => {
     {localStorage.setItem("usuario", JSON.stringify(usuario));}
   };
 
-//Función con error. Resolver con almacenar datos en base de datos
-  // const nuevoUser = () => {
-  //   let usuario;
-  //   // Verificar si estamos en el cliente (navegador)
-  // if (typeof window !== "undefined") {
-  //   usuario = window.localStorage.getItem("usuario");
-  //   if (usuario) {
-  //     // Convertir el objeto JSON a un objeto JavaScript
-  //     const parsedUsuario = JSON.parse(usuario);
-  //     newUserName = parsedUsuario.username;
-  //   }
-  //   }
-  //   console.log(newUserName)
-  //   return newUserName
-    
-  // };
 
-  // var newUserName = nuevoUser();
-
+  //Traer función para obtener datos desde Firestore
+   //Traer servicio de firestore
+    //Crear un puntero al dato que queremos traer
+    //Traer el dato con una promesa
+  // const getUser = () => {
+  //   let [data, setData] = useState([]);
+  //   const queryDb = getFirestore();
+  //   const queryCollection = collection(queryDb, "usuarios");
+  //   getDocs(queryCollection).then((res) =>
+  //     setData(
+  //       res.docs.map((usuario) => ({ id: usuario.id, ...usuario.data() }))
+  //     )
+  //   );
+  // }
+   
   return (
     <UserContext.Provider
       value={{
@@ -150,6 +142,8 @@ const UserContextProvider = ({ children }) => {
         //getUser,
         //setId,
         nuevoUsuario,
+        setUsuario,
+        //getUser
         // nuevoUser,
         // newUserName,
       }}

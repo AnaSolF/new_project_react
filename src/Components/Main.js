@@ -13,7 +13,7 @@ const Main = (  ) => {
   return (
     <>
       <div className={styles.main}>
-        <h1 className={styles.titulo}>My Flavor</h1>
+        <h1 className={styles.titulo}>Flavors</h1>
         <div className={styles.banner}>Banner</div>
         <main className={styles.principal}>
           <div style={{ display: "flex", margin:"0 auto", flexDirection:"column", width:"80%" }}>

@@ -100,10 +100,24 @@ export default function CustomLogin() {
                   }}
                 />
               </FloatingLabel>
+
+              <FloatingLabel label="address" className="mb-3">
+                <Form.Control
+                  type="text"
+                  placeholder="Address"
+                  id="address"
+                  required
+                  value={address}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    e.preventDefault;
+                    setAddress(value);
+                  }}
+                />
+              </FloatingLabel>
+
             </Form>
-            {/* <p style={{ fontSize: "small", marginTop: "10px" }}>
-            Olvidé mi contraseña
-          </p> */}
+           
             <Button
               type="submit"
               onClick={(e) => {
