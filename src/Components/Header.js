@@ -6,6 +6,10 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useUserContextProvider } from "@/Context/UserContextProvider";
 import Darkmode from "./DarkMode";
+import LogoutBtn from "./LogoutBtn";
+import { BsBoxArrowInRight } from "react-icons/bs";
+import { useRouter } from 'next/router';
+import { useMainContextProvider } from "@/Context/MainContextProvider";
 
 //Para usar contexto
 //Import useContext
@@ -14,6 +18,13 @@ import Darkmode from "./DarkMode";
 //Usamos un condicional para mostrar o no el usuario;
 
 const Header = (props) => {
+  const router = useRouter("");
+  let { isLoggedIn } = useMainContextProvider();
+  let { setIsLoggedIn } = useMainContextProvider();
+  const logOut = () => {
+    setIsLoggedIn(false);
+    router.push("/");
+  };
 
   // var { newUserName } = useUserContextProvider();
   return (
@@ -42,6 +53,7 @@ const Header = (props) => {
                   <Nav.Link href="Cart">
                     <BsFillCartPlusFill />
                   </Nav.Link>
+                  <Nav.Link onClick={()=>logOut()}><BsBoxArrowInRight /></Nav.Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
