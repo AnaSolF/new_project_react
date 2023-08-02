@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../Firebase/InitConfig";
 import { useRouter } from "next/router";
+import { useUserContextProvider } from "@/Context/UserContextProvider";
 //import SocialLogin from "@/Components/SocialLogin";
 
 export default function CustomLogin() {
@@ -14,6 +15,10 @@ export default function CustomLogin() {
   const [password, setPassword] = useState("");
   const auth = getAuth();
   const router = useRouter("");
+  var { setUsername } = useUserContextProvider();
+  var { usuario } = useUserContextProvider();
+  let username = usuario.username;
+  
 
   function handleSubmit() {
     createUserWithEmailAndPassword(auth, email, password)
@@ -23,8 +28,9 @@ export default function CustomLogin() {
         console.log(user);
         if (user) {
           router.push("/CustomLogin");
+          alert("Registro exitoso");
         }
-        alert("Registro exitoso");
+       
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -58,6 +64,7 @@ export default function CustomLogin() {
     if (!validatePassword(password)) {
       alert("Ingrese una contraseña de más de 8 caracteres");
     }
+    return null
   }
 
   return (
@@ -66,7 +73,7 @@ export default function CustomLogin() {
         <div className={styles.login}>
           <div className={styles.formulario}>
             <Nav.Link href="#">
-              Login
+              Registro
             </Nav.Link>
             <br></br>
             <h4 style={{ padding: "10px" }}>Registráte con tu Email</h4>
@@ -100,22 +107,6 @@ export default function CustomLogin() {
                   }}
                 />
               </FloatingLabel>
-
-              <FloatingLabel label="address" className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Address"
-                  id="address"
-                  required
-                  value={address}
-                  onChange={(e) => {
-                    const { value } = e.target;
-                    e.preventDefault;
-                    setAddress(value);
-                  }}
-                />
-              </FloatingLabel>
-
             </Form>
            
             <Button
@@ -131,8 +122,6 @@ export default function CustomLogin() {
               Ya tengo cuenta
             </Button>
           </div>
-        
-          
         </div>
       </div>
     </>

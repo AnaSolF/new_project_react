@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import MainContextProvider from "@/Context/MainContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserContextProvider from "@/Context/UserContextProvider";
-import CartContextProvider from "@/Context/CartContext";
+import FirestoreContextProvider from "@/Context/FirestoreContext";
 
 
 
@@ -11,9 +11,9 @@ export default function App({ Component, pageProps }) {
   return (
     <MainContextProvider>
       <UserContextProvider>
-        <CartContextProvider>
+        <FirestoreContextProvider>
           <Component {...pageProps} />
-        </CartContextProvider>
+        </FirestoreContextProvider>
       </UserContextProvider>
     </MainContextProvider>
   );

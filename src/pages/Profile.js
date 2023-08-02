@@ -6,6 +6,9 @@ import styles from "../styles/profile.module.css";
 import Header from "@/Components/Header";
 import { useRouter } from "next/router";
 import { useMainContextProvider } from "@/Context/MainContextProvider";
+import { Nav, Button } from "react-bootstrap";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
 const Profile = () => {
   // var { newUserName } = useUserContextProvider();
@@ -39,7 +42,37 @@ const Profile = () => {
     <>
       <Header />
       <div className={styles.Sidebar}>
-        {/* <div> Hola {`${newUserName}`}</div> */}
+      <Form>
+              <FloatingLabel label="Email address" className="mb-3">
+                <Form.Control
+                  type="email"
+                  placeholder="name@example.com"
+                  id="email"
+                  required
+                  value={email}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    e.preventDefault;
+                    setEmail(value);
+                  }}
+                />
+              </FloatingLabel>
+              <FloatingLabel label="Password">
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  required
+                  id="password"
+                  value={password}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    e.preventDefault;
+                    setPassword(value);
+                  }}
+                />
+              </FloatingLabel>
+            </Form>
+           
 
         <Button onClick={() => logged()}>Hola</Button>
         <Button onClick={() =>DataUserRoute() }>DataUser</Button>

@@ -116,7 +116,11 @@ const CustomLogin = () => {
             >
               Iniciar Sesión
             </button>
-            <button className={styles.botonLogin} href="/Register">
+            <button
+              onClick={(e) => {
+                router.push('/Register')
+              }}
+              className={styles.botonLogin}>
               Registrarme
             </button>
           </div>

@@ -3,7 +3,7 @@ import styles from "../styles/main.module.css";
 import { useMainContextProvider } from "@/Context/MainContextProvider";
 import { useUserContextProvider } from "@/Context/UserContextProvider";
 import { Button } from "react-bootstrap";
-import { CartContext } from "@/Context/CartContext";
+import { CartContext } from "@/Context/FirestoreContext";
 import SocialLogin from "./SocialLogin";
 
 

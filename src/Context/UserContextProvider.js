@@ -1,13 +1,12 @@
 import React from "react";
 import { useContext, setContext } from "react";
 import { useState } from "react";
-//import { getFirestore, getDocs, collection, getData, addDoc } from "firebase/firestore";
 
 export const UserContext = React.createContext();
 export const useUserContextProvider = () => useContext(UserContext); //Otro HOOK personalizado par pasar función
 const UserContextProvider = ({ children }) => {
   //Pasar objeto como array
-  let [usuario, setUsuario] = useState({
+  var [usuario, setUsuario] = useState({
     //id: "",
     username: "",
     bio: "",
@@ -108,28 +107,11 @@ const UserContextProvider = ({ children }) => {
     if (typeof window !== "undefined")
     {localStorage.setItem("usuario", JSON.stringify(usuario));}
   };
-
-
-  //Traer función para obtener datos desde Firestore
-   //Traer servicio de firestore
-    //Crear un puntero al dato que queremos traer
-    //Traer el dato con una promesa
-  // const getUser = () => {
-  //   let [data, setData] = useState([]);
-  //   const queryDb = getFirestore();
-  //   const queryCollection = collection(queryDb, "usuarios");
-  //   getDocs(queryCollection).then((res) =>
-  //     setData(
-  //       res.docs.map((usuario) => ({ id: usuario.id, ...usuario.data() }))
-  //     )
-  //   );
-  // }
    
   return (
     <UserContext.Provider
       value={{
         usuario,
-        //saludo,
         setEmail,
         setPass,
         setUsername,
@@ -139,13 +121,9 @@ const UserContextProvider = ({ children }) => {
         setState,
         setZip,
         guardar,
-        //getUser,
         //setId,
         nuevoUsuario,
         setUsuario,
-        //getUser
-        // nuevoUser,
-        // newUserName,
       }}
     >
       {children}
