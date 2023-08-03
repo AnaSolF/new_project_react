@@ -32,9 +32,6 @@ const Header = (props) => {
   };
    var { newUserName } = useUserContextProvider();
   
-   
-  
-
   return (
     <>
       {["lg"].map((expand) => (

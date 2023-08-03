@@ -5,19 +5,16 @@ import styles from "../styles/profile.module.css";
 import Header from "@/Components/Header";
 import { useRouter } from "next/router";
 import { useMainContextProvider } from "@/Context/MainContextProvider";
-import { Nav, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import {
   getFirestore,
   getDocs,
   collection,
-  getData,
   doc,
   setDoc,
-  addDoc,
 } from "firebase/firestore";
-import { appInit, db } from "../Firebase/InitConfig";
 
 const Profile = (props) => {
   var { usuario } = useUserContextProvider();
@@ -52,9 +49,6 @@ const Profile = (props) => {
     router.push("/");
   };
 
-  const DataUserRoute = () => {
-    router.push("/DataUser");
-  };
   useEffect(() => {
     //Traer servicio de firestore
     //Crear un puntero al dato que queremos traer
@@ -183,6 +177,7 @@ const Profile = (props) => {
         style={{ float: "right", marginRight: "30px" }}
         onClick={() => {
           modificar();
+          router.push("/Sesion");
         }}
       >
         Modificar
