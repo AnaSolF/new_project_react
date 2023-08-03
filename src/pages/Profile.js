@@ -13,22 +13,19 @@ import {
   getDocs,
   collection,
   getData,
+  doc,
+  setDoc,
   addDoc,
 } from "firebase/firestore";
 import { appInit, db } from "../Firebase/InitConfig";
 
-const Profile = () => {
-  // var { newUserName } = useUserContextProvider();
-  // var { saludo } = useUserContextProvider();
-
-  // useEffect(() => {
-  //   newUserName
-  // }, [])
-
+const Profile = (props) => {
   var { usuario } = useUserContextProvider();
+  var { setId } = useUserContextProvider();
   var { nuevoUsuario } = useUserContextProvider();
   var { guardar } = useUserContextProvider();
   //var { getUser } = useUserContextProvider();
+  var id = usuario.id;
   var username = usuario.username;
   var bio = usuario.bio;
   var avatarUrl = usuario.avatarUrl;
@@ -50,12 +47,6 @@ const Profile = () => {
   let { isLoggedIn } = useMainContextProvider();
   let { setIsLoggedIn } = useMainContextProvider();
 
-  // const logged = () => {
-  //   if(isLoggedIn=false)
-  //   setIsLoggedIn(true);
-  //   return isLoggedIn
-  // };
-
   const logOut = () => {
     setIsLoggedIn(false);
     router.push("/");
@@ -74,21 +65,21 @@ const Profile = () => {
       setData(res.docs.map((avatar) => ({ id: avatar.id, ...avatar.data() })))
     );
   }, []);
- 
-  //Posteamos usuario en base de datos!!!!!!
-  const docRef = async () => {
-    var usuario = JSON.parse(localStorage.getItem('usuario'));
+
+  //Modificar usuario
+  const modificar = async () => {
     let db = getFirestore();
-    await addDoc(collection(db, "usuarios"), {
+    var queryDoc = doc(db, "usuarios", "KEE2D92TAlqu0xGFmEPF"); //Apuntar al documento
+    await setDoc(queryDoc, {
       username: usuario.username,
       bio: usuario.bio,
       avatarUrl: usuario.avatarUrl,
       address: usuario.address,
       state: usuario.state,
-      zip: usuario.zip
+      zip: usuario.zip,
     });
-  }
-  //Está volviendo a postear los mismos datos. Filtrar. 
+  };
+
   return (
     <>
       <Header />
@@ -173,10 +164,8 @@ const Profile = () => {
           </FloatingLabel>
         </Form>
         <br />
-        {/* <Button onClick={() => logged()}>Hola</Button>
-        <br />
-        <Button onClick={() => DataUserRoute()}>DataUser</Button> */}
       </div>
+      <h6 style={{ textAlign: "center", marginBottom: "30px" }}>Avatar</h6>
       <div className={styles.av}>
         {data.map((avatar, key) => (
           <div key={avatar.id} className={styles.avatars}>
@@ -184,22 +173,20 @@ const Profile = () => {
               <img
                 src={avatar.avatarUrl}
                 style={{ width: "100px", height: "100px" }}
+                onClick={() => setAvatarUrl(avatar.avatarUrl)}
               ></img>
-          <img src="icons8-marca-de-verificación-16.png"onClick={() => setAvatarUrl(avatar.avatarUrl)}></img>
             </div>
           </div>
         ))}
       </div>
       <Button
-        
-        onClick={() =>
-        nuevoUsuario()
-      }>Modificar</Button>
-
-      <Button
-      onClick={()=> {docRef()}}
-      >Cargar datos</Button>
-
+        style={{ float: "right", marginRight: "30px" }}
+        onClick={() => {
+          modificar();
+        }}
+      >
+        Modificar
+      </Button>
     </>
   );
 };

@@ -18,8 +18,13 @@ flex-wrap: wrap;
     border: 2px solid red;
     margin: 3px;
 }
+
+.avatars :hover{
+    transform: scale(1.2);
+}
+
 .user {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 801px) {

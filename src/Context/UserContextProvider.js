@@ -7,7 +7,7 @@ export const useUserContextProvider = () => useContext(UserContext); //Otro HOOK
 const UserContextProvider = ({ children }) => {
   //Pasar objeto como array
   var [usuario, setUsuario] = useState({
-    //id: "",
+    id: "",
     username: "",
     bio: "",
     avatarUrl: "",
@@ -19,7 +19,7 @@ const UserContextProvider = ({ children }) => {
   //Seter objeto usuario completo
 
   const nuevoUsuario = (
-    // newId,
+    newId,
     newUsername,
     newBio,
     newAvataUrl,
@@ -29,7 +29,7 @@ const UserContextProvider = ({ children }) => {
   ) =>
     setUsuario({
       ...usuario,
-      // id: newId,
+      id: newId,
       username: newUsername,
       bio: newBio,
       avatarUrl: newAvataUrl,
@@ -41,6 +41,13 @@ const UserContextProvider = ({ children }) => {
     );
 
   //Separo los seter de las propiedades del objeto, para poder capturar los valores de los inputs
+
+  const setId = (newId) => {
+    setUsuario({
+      ...usuario,
+      id: newId,
+    }) 
+  }
 
   const setEmail = (newEmail) =>
     setUsuario({
@@ -115,7 +122,8 @@ const UserContextProvider = ({ children }) => {
         setZip,
         guardar,
         nuevoUsuario,
-        setUsuario
+        setUsuario,
+        setId
       }}
     >
       {children}
