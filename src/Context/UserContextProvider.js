@@ -12,8 +12,6 @@ const UserContextProvider = ({ children }) => {
     bio: "",
     avatarUrl: "",
     address: "",
-    email: "",
-    password: "",
     state: "",
     zip: "",
   });
@@ -26,8 +24,6 @@ const UserContextProvider = ({ children }) => {
     newBio,
     newAvataUrl,
     newAddress,
-    newEmail,
-    newPass,
     newState,
     newZip
   ) =>
@@ -38,19 +34,13 @@ const UserContextProvider = ({ children }) => {
       bio: newBio,
       avatarUrl: newAvataUrl,
       address: newAddress,
-      email: newEmail,
-      password: newPass,
       state: newState,
       zip: newZip,
-    });
+    },
+    guardar()
+    );
 
   //Separo los seter de las propiedades del objeto, para poder capturar los valores de los inputs
-  //El set de id no se
-  // const setId = (newId) =>
-  //   setUsuario({
-  //     ...usuario,
-  //     id: newId
-  //   });
 
   const setEmail = (newEmail) =>
     setUsuario({
@@ -76,11 +66,14 @@ const UserContextProvider = ({ children }) => {
       bio: newBio,
     });
 
+  
   const setAvatarUrl = (newAvatarUrl) =>
     setUsuario({
       ...usuario,
       avatarUrl: newAvatarUrl,
-    });
+    },
+    );
+  
 
   const setAddress = (newAddress) => {
     setUsuario({
@@ -121,9 +114,8 @@ const UserContextProvider = ({ children }) => {
         setState,
         setZip,
         guardar,
-        //setId,
         nuevoUsuario,
-        setUsuario,
+        setUsuario
       }}
     >
       {children}

@@ -1,10 +1,30 @@
-.Sidebar{
-    margin-top: 40px;
+.Sidebar {
+    padding: 40px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin: 0 auto;
+    width: 100%;
 }
 
-.user{
+.av{
+display: flex;
+width: 100%;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.avatars{
+    border: 2px solid red;
+    margin: 3px;
+}
+.user {
     margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 801px) {
+    .Sidebar {
+        width: 50%;
+    }
+
 }
